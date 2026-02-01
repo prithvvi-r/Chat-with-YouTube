@@ -180,11 +180,14 @@ Language-independent video understanding
 
 
 🧑‍💻 Author
+```
 Pruthviraj Pesode
 Final-year CSE student | AI & Backend Enthusiast
 Building practical LLM-powered applications 🚀
+```
 
 ⭐ If You Like This Project
+```
 Star the repo.
 Fork it.
 Break it.

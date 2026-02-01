@@ -1,68 +1,100 @@
 # 🎥 Chat with YouTube (LLM-powered Q&A App)
 
 Chat with any YouTube video using AI.  
-This app extracts a video transcript, converts it into embeddings, stores it in a vector database, and lets users ask natural-language questions about the video content — even if the video is **not in English**.
+This application extracts the transcript of a YouTube video, converts it into vector embeddings, and allows users to ask context-aware questions about the video content — even if the video is not in English.
 
 ---
 
 ## 🚀 Features
 
-- 🔗 Accepts **YouTube video URLs**
-- 📝 Automatically fetches video transcripts
-- 🌐 Supports **multiple languages** (English, Hindi, Marathi, Tamil)
-- 🔁 Translates non-English transcripts to English using LLM
-- 🧠 Uses **vector embeddings + semantic search**
-- 💬 Chat-style Q&A interface
-- ⚡ Fast and lightweight with **Streamlit**
+- Accepts YouTube video URLs
+- Automatically fetches video transcripts
+- Supports multiple languages (English, Hindi, Marathi, Tamil)
+- Translates non-English transcripts to English using LLM
+- Semantic search using vector embeddings
+- Chat-style question answering interface
+- Built with Streamlit for rapid UI development
 
 ---
 
 ## 🏗️ Architecture Overview
 
-YouTube Video
-↓
-Transcript Extraction
-↓
-(Optional Translation → English)
-↓
+```text
+YouTube Video URL
+        │
+        ▼
+Extract Video ID
+        │
+        ▼
+Fetch Transcript (YouTube Transcript API)
+        │
+        ├── If language ≠ English
+        │       ▼
+        │   Translate to English (LLM)
+        │
+        ▼
 Text Chunking
-↓
-Embeddings (OpenAI)
-↓
-FAISS Vector Store
-↓
-Semantic Retrieval
-↓
-LLM Answer Generation
-
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend**
-- Streamlit
-
-**Backend / AI**
-- LangChain
-- OpenAI (Embeddings + Chat Model)
-- FAISS (Vector Store)
-- YouTube Transcript API
-
----
+(RecursiveCharacterTextSplitter)
+        │
+        ▼
+Generate Embeddings (OpenAI)
+        │
+        ▼
+Store in Vector DB (FAISS)
+        │
+        ▼
+User Question
+        │
+        ▼
+Semantic Search (Top-K Relevant Chunks)
+        │
+        ▼
+Context-Aware Prompt
+        │
+        ▼
+LLM Answer (ChatOpenAI)
+        │
+        ▼
+Response Displayed in Streamlit Chat UI
+```
 
 ## 📂 Project Structure
-
-├── main.py # Backend logic (transcript, embeddings, LLM, translation)
-|
-├── frontend.py # Streamlit UI
-|
+```
+chat-with-youtube/
+│
+├── main.py
+│   ├── extract_video_id()        # Extracts video ID from URL
+│   ├── load_transcript()         # Fetches YouTube transcript
+│   ├── create_vector_store()     # Creates FAISS vector DB
+│   ├── get_answer()              # Retrieves context + generates answer
+│   └── Translate()               # Translates transcript to English
+│
+├── frontend.py
+│   ├── Streamlit UI
+│   ├── Language selection
+│   ├── Chat interface
+│   └── Session state handling
+│
 ├── requirements.txt
-|
+│
 └── README.md
+```
 
+🛠️ Tech Stack
 
----
+Frontend
+
+Streamlit
+
+Backend / AI
+
+LangChain
+
+OpenAI (Embeddings + Chat Model)
+
+FAISS (Vector Store)
+
+YouTube Transcript API
 
 ## ⚙️ Setup Instructions
 
@@ -103,7 +135,7 @@ User asks a question
 Relevant transcript chunks are retrieved
             |
 LLM answers using only retrieved context
-
+```
 
 🌍 Supported Languages
 Language	Code

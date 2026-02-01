@@ -54,8 +54,11 @@ LLM Answer Generation
 ## 📂 Project Structure
 
 ├── main.py # Backend logic (transcript, embeddings, LLM, translation)
+|
 ├── frontend.py # Streamlit UI
+|
 ├── requirements.txt
+|
 └── README.md
 
 
@@ -77,28 +80,30 @@ os.environ["OPENAI_API_KEY"] = "your_openai_api_key_here"
 
 ▶️ Run the Application
 streamlit run frontend.py
+
 🧪 How It Works (Step-by-Step)
 User enters a YouTube video URL
-
+            |
 App extracts the video ID
-
+            |
 Transcript is fetched using YouTube Transcript API
-
+            |
 If video language ≠ English:
-
+            |
 Transcript is translated to English using LLM
-
+            |
 Transcript is split into chunks
-
+            |
 Chunks are converted into embeddings
-
+            |
 Embeddings are stored in FAISS
-
+            |
 User asks a question
-
+            |
 Relevant transcript chunks are retrieved
-
+            |
 LLM answers using only retrieved context
+
 
 🌍 Supported Languages
 Language	Code
@@ -106,7 +111,9 @@ English	en
 Hindi	hi
 Marathi	mr
 Tamil	ta
-🔐 Limitations
+
+
+🔐 Limitations :
 Only works for videos with available transcripts
 
 Translation quality depends on LLM
@@ -115,7 +122,8 @@ API usage depends on OpenAI rate limits
 
 Not optimized for extremely long videos
 
-🧠 Future Improvements
+
+🧠 Future Improvements :
 Add support for more languages
 
 Cache embeddings for repeated videos
@@ -128,6 +136,7 @@ Move API keys to .env
 
 Deploy on cloud (AWS / GCP)
 
+
 📌 Use Cases
 Learning from long educational videos
 
@@ -136,6 +145,7 @@ Interview prep from YouTube tutorials
 Research and content analysis
 
 Language-independent video understanding
+
 
 🧑‍💻 Author
 Pruthviraj Pesode
@@ -148,8 +158,5 @@ Fork it.
 Break it.
 Improve it.
 Ship it.
-
-
-
 
 ---
